@@ -1,0 +1,44 @@
+DB Schema: E-commerce shop
+
+
+Customer
+-ID - Primary Key
+-Name
+-Address
+-MobileNumber
+-Email
+
+
+Product
+-ID Primary Key
+-AvailableQuantity
+-Price
+
+
+Order
+-OrderID - Primary Key
+-CustomerID - Foreign Key to Customers
+
+
+OrderProducts
+-OrderID - Foreign Key to Orders
+-ProductID - Foreign Key to products
+-Quantity
+-Price
+
+
+
+Payment
+-PaymentID
+-OrderID - ForeignKey to Orders
+-PaymentType
+-TimeStamp
+-AmountPaid
+
+
+SELECT SUM(OP.Price * OP.Quantity) FROM OrderProducts OP 
+	INNER JOIN Order O ON O.OrderID = OP.OrderID
+	AND o.IsPaid <> 1
+	INNER JOIN Customer C ON C.ID = O.CustomerID
+	AND C.Email = 'utsavinbox@gmail.com'
+
